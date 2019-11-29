@@ -1,0 +1,6 @@
+NT72673_A32 BOARD
+M:     Will Fu <will_fu@novatek.com.tw>
+S:     Maintained
+F:     board/novatek/nt72673_n33005_nand
+F:     include/configs/nt72673_n33005_nand.h
+F:     configs/nt72673_n33005_nand_defconfig

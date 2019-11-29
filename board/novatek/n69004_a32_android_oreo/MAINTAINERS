@@ -1,0 +1,6 @@
+N69004_A32_ANDROID BOARD
+M:     Alvin Lin <kwinyee_lin@novatek.com.tw>
+S:     Maintained
+F:     board/novatek/n69004_a32_android_oreo
+F:     include/configs/n69004_a32_android_oreo.h
+F:     configs/n69004_a32_android_oreo_defconfig

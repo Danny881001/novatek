@@ -1,0 +1,221 @@
+config NVT_IVOT_SOC
+	bool "Novatek IVOT series soc"
+	help
+	  This option can be used to enable ivot features.
+
+if !NVT_IVOT_SOC
+menu "Novatek Turnkey Features"
+
+choice
+	prompt "Novate TV SOC Type Select"
+	default NT72172
+
+config NT72172
+	bool "Novatek NT72172 TV SOC"
+	help 
+	Novatek NT72172 TV SOC
+
+config NT72673
+	bool "Novatek NT72673 TV SOC"
+	help 
+	Novatek NT72673 TV SOC
+
+config NT72671
+	bool "Novatek NT72671 TV SOC"
+	help 
+	Novatek NT72671 TV SOC
+
+endchoice
+
+choice 
+    	prompt "Novatek SOC project select" 
+
+config NT72172_A32_EVB
+	bool "Novatek NT72172 A32 Evulation Board"	
+
+config NT72172_A64_EVB
+ 	bool "Novatek NT72172 A64 Evulation Board"
+
+config NT72172_A64_TK_ANDROID
+	bool "Novatek NT72172 A64 Turnkey Android Board"
+
+config NT72172_A32_TK_ANDROID
+	bool "Novatek NT72172 A32 Turnkey Android Board"
+
+config NT72172_A32_TK_ANDROID_OPERA
+	bool "Novatek NT72172 A32 Turnkey Android HbbTV Board"
+
+config NT72172_A32_TK_ANDROID_OREO
+	bool "Novatek NT72172 A32 Turnkey Android Oreo Board"
+
+config NT72673_A32_EMMC_EVB
+	bool "Novatek NT72673 A32 EMMC Evulation Board"	
+
+config NT72673_A32_EMMC_CHINA_DRM
+	bool "Novatek NT72673 A32 EMMC China DRM verify project"	
+	
+config NT72673_A64_EMMC_EVB
+	bool "Novatek NT72673 A64 EMMC Evulation Board"	
+
+config NT72673_A32_NAND_EVB
+	bool "Novatek NT72673 A32 NAND Evulation Board"
+
+config NT72673_N33005_NAND
+	bool "Novatek NT72673 N33005 NAND Project Board"
+
+config NT72673_A32_TK_ANDROID_OREO
+	bool "Novatek NT72673 A32 Turnkey Android Oreo Board"
+
+config NT72673_A32_TK_ANDROID_OREO_SEC
+	bool "Novatek NT72673 A32 Turnkey Android Oreo Board With secure boot"
+
+config N69004_A32_ANDROID_OREO
+	bool "N69004 A32 Android Oreo Broad"
+
+config N62002_A32_ANDROID_OREO
+	bool "N62002 A32 Android Oreo Board"
+
+config N62002_A32_ANDROID_OREO_SEC
+	bool "N62002 A32 Android Oreo Board With secure boot"
+
+config NT72673_A64_TK_ANDROID_OREO
+	bool "Novatek NT72673 A64 Turnkey Android Oreo Board"
+
+config NT72671_A32_EMMC_EVB
+	bool "Novatek NT72671 A32 EMMC Evulation Board"	
+
+config NT72671_A32_TK_ANDROID_OREO
+	bool "Novatek NT72671 A32 Turnkey Android Oreo Board"
+endchoice
+
+config NVT_TK_EMMC_UTILS
+	bool "Support Novatek Turnkey emmc utilitys"
+	help
+	   Support Novatek Turnkey emmc utiltys,
+	   include gpt partition layout and firmware update commands
+
+config NVT_FW_UPDATE_BUF_MAX
+   	int "Maximum transfer dram buffer in Mega byte"
+	depends on NVT_TK_EMMC_UTILS
+	default "450"
+	help
+	   If update image large than available dram size, we need cut the image into serval piece to transfer
+	   this value depend on your system available memory
+
+config NVT_TK_SPI_UTILS
+	bool "Support Novatek Turnkey SPI flash utilitys"
+	help
+	   Support Novatek Turnkey SPI flash utiltys,
+	   include gpt partition layout and firmware update commands
+
+config NVT_TK_NAND_UTILS
+	bool "Support Novatek Turnkey NAND utilitys"
+	help
+	   Support Novatek Turnkey NAND utiltys,
+	   include partition layout and firmware update commands
+
+config NVT_EUPM
+	bool "Support Novatek Emmc image dump utility"
+	help
+	   Support Novatek Emmc image dump utility
+
+
+config NVTTK_EBURNER_V2
+	bool "Support Novatek Turnkey Empty burner V2 utilitys"
+	help
+	   Support Novatek Turnkey Empty burner V2 utilitys
+
+config NVTTK_EBURNER_V2_PACK_EBURNER
+	bool "Pack nvttk_eburner into firmware"
+	depends on NVTTK_EBURNER_V2
+	help
+	  Pack nvttk_eburner into firmware
+
+config NVTTK_NO_EBURNER
+	bool "Don't run Novatek eburner flow"
+	depends on !NVTTK_EBURNER_V2
+	default n
+	help
+	   Don't run Novatek eburner flow
+
+config NVT_FM_TOOL
+	bool "Support Novatek Turnkey Factory Mode burn key tool"
+	select NVT_BOOTM_LOAD_SECOS
+	help
+	   Support Novatek Turnkey Factory Mode burn key tool
+
+config NVT_BOOTM_LOAD_SECOS
+	bool "Support Novatek uboot boot kernel with secos feature"
+	help
+	   Support Novatek uboot boot kernel with secos feature
+
+config NVT_SECURE_BOOT
+	bool "Support Novatek Turnkey secure boot solution"
+	select SHA256
+	help
+	   Support Novatek Turnkey secure boot solution
+
+config NVT_SECURE_SIGN_COMMON_FORMAT
+	depends on NVT_SECURE_BOOT
+	bool "Support Novatek Turnkey secure boot common sign format"
+	help
+	   Support Novatek Turnkey secure boot common sign format 
+
+config NVT_NSV_SECURE_UPDATE
+	bool "Support Novatek Turnkey NSV secure update solution"
+	help
+	   Support Novatek Turnkey NSV secure update solution
+
+config OLD_PANEL_PARAM
+	bool "Use old panel param format"
+	default y
+	help
+	   Use old panel param format
+
+config PARTITIONS
+	bool "Support uboot partition function"
+	depends on NVT_GWRITE 
+	help
+		Support uboot partition function
+
+config EFI_PARTITION
+	bool "Support uboot efi partition"
+	depends on NVT_GWRITE 
+	help
+		Support uboot efi partition function
+
+config DOS_PARTITION
+	bool "Support uboot dos partition "
+	default y
+	help
+		Support uboot dos partition function
+
+config CMD_GPT 
+	bool "Support uboot GPT function"
+	depends on NVT_GWRITE 
+	help
+		Support uboot GPT function
+
+config PARTITION_UUIDS 
+	bool "Support uboot partition uuids"
+	depends on NVT_GWRITE 
+	help
+		Support uboot partition uuids function
+
+config NVT_GWRITE
+	bool "Support Novatek gwrite utilitys"
+	select PARTITIONS
+	select EFI_PARTITION
+	select DOS_PARTITION
+	select CMD_GPT
+  select PARTITION_UUIDS
+	help
+	   Support Novatek gwrite flash utiltys
+	   include gpt partition layout and firmware update commands
+
+config ANDROID_AB_UPDATE
+	bool "Support Android AB update"
+	default n
+
+endmenu		# Novatek Features
+endif

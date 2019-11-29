@@ -1,0 +1,6 @@
+NT72673_A32 BOARD
+M:     Alvin Lin <kwinyee_lin@novatek.com.tw>
+S:     Maintained
+F:     board/novatek/nt72673_a32_tk_android_oreo
+F:     include/configs/nt72673_a32_tk_android_oreo.h
+F:     configs/nt72673_a32_tk_android_oreo_defconfig

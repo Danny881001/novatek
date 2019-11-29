@@ -1,0 +1,15 @@
+if NT72172_A64_EVB
+
+config SYS_BOARD
+	default "nt72172_a64_evb"
+
+config SYS_VENDOR
+	default "novatek"
+
+config SYS_SOC
+	default "nt72172_a64"
+
+config SYS_CONFIG_NAME
+	default "nt72172_a64_emmc"
+
+endif

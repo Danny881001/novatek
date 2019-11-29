@@ -1,0 +1,107 @@
+
+config NVT_NAND_FLASH_CONTROLLER
+	tristate "Support for NT72xxx NAND Flash Controller"
+	default n
+	help
+	  Enable support for Novatek NT72xxx NAND Flash Controller.
+
+config NVT_NAND_FLASH_CONTROLLER_BBT
+	bool "Enable BBT on NT72xxx NAND Flash Controller"
+	depends on MTD
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default y
+	help
+	  Enable on device bad block table (BBT). The on device BBT has extra
+	  checksum protection.
+	  Please noted that this option is for Novatek NT72xxx NAND Flash
+	  Controller only.
+
+config NVT_NAND_FLASH_CONTROLLER_BITFLIP_THRESHOLD
+	int "Customize MTD bitflip threshold"
+	depends on MTD
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default 3
+	help
+	  Assign the bitflip threshold value for MTD.  This value controls how
+	  bitflip error is returned to UBI. Only if the bitflip count is greater
+	  then this threshold, then UBI get the bitflip error.
+	  Set 0 to let system select the optimal value by ECC algorithm.
+	  The default value is 3 for optimal RS4 configuration.
+
+config NVT_NAND_FLASH_CONTROLLER_SHARE_CI
+	tristate "Share GPIOs with CI controller (ARM-side NFC)"
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default n
+	help
+	  Enable support for GPIO pin sharing between Novatek NT72xxx NAND Flash
+	  Controller and CI.
+	  Please noted that this option should be used for Novatek NT72xxx NAND
+	  Flash Controller only.
+
+config NVT_NAND_FLASH_CONTROLLER_STBC_ECC_SWITCH
+	tristate "Support for STBC partition ECC switch"
+	depends on MTD
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default n
+	help
+	  A workaround implementation to switch ECC when access STBC partition,
+	  so we can completely ignore the incorrect ECC bootstrap setting.
+	  Please noted that this option should be used for Novatek NT72xxx NAND
+	  Flash Controller only.
+
+config NVT_NAND_FLASH_CONTROLLER_BY_PART_ECC_INV
+        tristate "Support for by-partition ECC inversion"
+        depends on NVT_NAND_FLASH_CONTROLLER
+        depends on NVT_NAND_FLASH_CONTROLLER_NPT
+        default n
+        help
+          Enable ECC inversion for page read and page program for all blocks
+          from partition name contains "_inv", "ap", "fs", "pridat". Internally,
+          a table will be created to indicate if one block needs ECC inversion
+          during driver initialization. By using ECC inversion makes blank pages
+          protected by ECC.
+          Please noted that this option should be used for Novatek NT72171
+          (or newer) NAND Flash Controller.
+
+config NVT_NAND_FLASH_CONTROLLER_NPT
+	tristate "Support for Novatek Partition Table"
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default y
+	help
+	  Enable supports for the on-NAND partition table.
+	  During driver initialization, the partition table on the MISC
+	  partition will be read, verified and parsed for MTD.
+	  Please noted that this option should be used for Novatek NT72171
+	  (or newer) NAND Flash Controller.
+
+config NVT_NAND_FLASH_CONTROLLER_MTD_DIRECT_DMA
+	tristate "Support for memcpy-less MTD interface"
+	depends on MTD
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default n
+	help
+	  Skip internal NFC DMA buffer and transfer data to MTD buffer directly.
+	  Currently only unaligned read is optimized, because other read/write
+	  modes have no performance gains on NT72171 platform and vastly
+	  increase the code complexity.
+
+config NVT_NAND_FLASH_CONTROLLER_DEBUGFS
+	tristate "Support for debugfs"
+	depends on DEBUG_FS
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default n
+	help
+	  Enable debugfs for the Novatek NT72xxx NAND Flash Controller to
+	  commands used for special test cases.
+	  Please noted that this option is for Novatek NT72xxx NAND Flash
+	  Controller only.
+
+config NVT_NAND_FLASH_CONTROLLER_QUIET
+	tristate "Print less logs"
+	depends on NVT_NAND_FLASH_CONTROLLER
+	default n
+	help
+	  Skip some message and not to print them. Please be careful on this
+	  option, since less messages make debugging impossible.
+	  Please noted that this option is for Novatek NT72xxx NAND Flash
+	  Controller only.

@@ -1,0 +1,47 @@
+if NT72673_N33005_NAND
+
+config SYS_BOARD
+	default "nt72673_n33005_nand"
+
+config SYS_VENDOR
+	default "novatek"
+
+config SYS_SOC
+	default "nt72673_a32"
+
+config SYS_CONFIG_NAME
+	default "nt72673_n33005_nand"
+
+# Project configs
+
+menuconfig CMD_NVT_SCRIPT_UPDATE
+	bool "Upgrade firmware according to auto script"
+	default n
+
+if CMD_NVT_SCRIPT_UPDATE
+
+config NVT_SCRIPT_UPDATE_SKIP_CHECK
+	bool "Skip check script"
+
+config NVT_SCRIPT_UPDATE_BLINK_LED
+	bool "Blink LED while updating"
+
+config NVT_SCRIPT_UPDATE_SCRIPT_NAME
+	string "Default script file name"
+	default "shredder_usb_update.scr"
+
+config NVT_SCRIPT_UPDATE_BUF
+	hex "Script ram buffer address"
+	default 0x3200000
+
+config NVT_SCRIPT_UPDATE_SIZE
+	int "Script file size"
+	default 8192
+
+endif
+
+config FRC_UTILS
+	bool "FRC utils support"
+	default n
+
+endif

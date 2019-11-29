@@ -1,0 +1,9 @@
+menu "Novatek Stand By Controller Support"
+
+config NVT_STBC
+	bool "Enable Novatek STBC  support"
+	depends on ARCH_NT72172_A32 || ARCH_NT72172_A64 || ARCH_NT72673_A32 || ARCH_NT72673_A64 || ARCH_NT72671_A32 || ARCH_NT72671_A64
+	help
+	  This enables Novatek stand by controller function support
+
+endmenu

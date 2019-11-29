@@ -1,0 +1,10 @@
+Compile U-Boot
+==============
+
+  > cd u-boot
+  > export CROSS_COMPILE=arm-linux-gnueabihf-
+  > make nt72673_a32_emmc_config
+  > make 
+  > cp u-boot.bin /usb_pen_driver
+
+

@@ -1,0 +1,6 @@
+N62002_A32_ANDROID BOARD
+M:     Ted Chen <ted_chen@novatek.com.tw>
+S:     Maintained
+F:     board/novatek/n62002_a32_android_oreo
+F:     include/configs/n62002_a32_android_oreo.h
+F:     configs/n62002_a32_android_oreo_defconfig

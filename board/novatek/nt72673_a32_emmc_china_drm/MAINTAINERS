@@ -1,0 +1,6 @@
+NT72673_A32_EMMC_CHINA_DRM BOARD
+M:     Alvin Lin <kwinyee_lin@novatek.com.tw>
+S:     Maintained
+F:     board/novatek/nt72673_a32_emmc_china_drm
+F:     include/configs/nt72673_a32_emmc_china_drm.h
+F:     configs/nt72673_a32_emmc_china_drm_defconfig

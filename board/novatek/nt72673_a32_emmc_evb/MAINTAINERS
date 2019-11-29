@@ -1,0 +1,6 @@
+NT72673_A32_EMMC BOARD
+M:     Alvin Lin <kwinyee_lin@novatek.com.tw>
+S:     Maintained
+F:     board/novatek/nt72673_a32_emmc
+F:     include/configs/nt72673_a32_emmc.h
+F:     configs/nt72673_a32_emmc_defconfig

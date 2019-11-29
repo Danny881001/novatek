@@ -1,0 +1,15 @@
+if N62002_A32_ANDROID_OREO
+
+config SYS_BOARD
+	default "n62002_a32_android_oreo"
+
+config SYS_VENDOR
+	default "novatek"
+
+config SYS_SOC
+	default "nt72673_a32"
+
+config SYS_CONFIG_NAME
+	default "n62002_a32_android_oreo"
+
+endif
